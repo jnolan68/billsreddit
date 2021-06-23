@@ -31,8 +31,7 @@ class GameThread:
     def __organizeComments(self):
         df = pd.DataFrame(columns = ['UTC Date/Time', 'User', 'Comment'])
         for i in self.comments:
-            df.append('UTC Date/Time' : , 'User', 'Comment'])
-)
+            df.append(['UTC Date/Time', 'User', 'Comment'])
 
         print(df)
 
