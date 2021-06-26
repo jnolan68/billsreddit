@@ -1,5 +1,8 @@
 import pandas as pd
 import datetime
+import spacy
+import gamecomment
+nlp = spacy.load("en_core_web_sm")
 
 class GameThread:
 
@@ -31,14 +34,20 @@ class GameThread:
     def __organizeComments(self):
         df = pd.DataFrame(columns = ['UTC Date/Time', 'User', 'Comment'])
         for i in self.comments:
-            df.append(['UTC Date/Time', 'User', 'Comment'])
-
-        print(df)
+            #df.append(['UTC Date/Time', 'User', 'Comment'])
+            doc = nlp(i.body)
+            print(i.body)
+            for token in doc:
+                print(token.text, token.pos_, token.dep_)
 
     #expands the game comments get ALL comments
     #NOTE: very expensive to execute
     def __expandComments(self):
         self.comments.replace_more(limit=None)
+
+    #calculates the word embeddings for the thread
+    def __calcEmbeddings(self):
+        pass
 
 
 

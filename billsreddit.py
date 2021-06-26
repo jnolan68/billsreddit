@@ -5,7 +5,7 @@ from os import path
 import pathlib
 import csv
 import pandas
-import sklearn
+#import sklearn
 
 from gamethread import GameThread
 
@@ -49,29 +49,25 @@ class BillsReddit():
         keyword = "Game Thread"
         gamethreads = []
 
-
         for i in bills.search(keyword, sort='new'):
             #if the title contains "Game Thread" we keep it, otherwise toss it
             if keyword in i.title:
                 #print("TITLE: " + i.title)
                 time = datetime.datetime.fromtimestamp(i.created_utc).strftime('%Y-%m-%d %H:%M:%S')
                 print("THREAD Date:" + time + " Title " + i.title)
-                #i.comments.replace_more(limit=None)
+                i.comments.replace_more(limit=0)
 
                 gt = GameThread(i)
                 #self.writeToCSV(gt)
-                gamethreads.append(gt)
-
-                #exit(0)
-                #gamethreads.append(i)
+                #gamethreads.append(gt)
 
         print("Number of Game Day Threads " + str(len(gamethreads)))
 
         #the gamethread submission
         #i is the submission
-        for i in gamethreads:
+        #for i in gamethreads:
 
-            time = datetime.datetime.fromtimestamp(i.date).strftime('%Y-%m-%d %H:%M:%S')
+            #time = datetime.datetime.fromtimestamp(i.date).strftime('%Y-%m-%d %H:%M:%S')
             #print("Date:" + time + " Title " + i.title)
             #print ("Number of Comments " + str(len(i.comments)))
 
